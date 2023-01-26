@@ -11,7 +11,7 @@ Once you've logged in create a new app and view your client ID
 If you specifically wan't to be able to search as I do in this projekt you can see the means to do that here.
 (Spotify documentation Search/v1)[https://developer.spotify.com/console/get-search-item/]
 
-To be able to use fetch as I do you need to verify the token so scroll down to OAuth Token and paste your client Secret in there and press "Get Token".
+To be able to use fetch as I do you need to verify the token so scroll down to OAuth Token press "Get Token".
 It will prompt you to log in and once you've done that you can highlight the text in OAuth Token and copy it into your programs code.
 
 This will go into the fetch part inside the Form component.
