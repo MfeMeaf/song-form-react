@@ -3,9 +3,10 @@
 var embeddiv = document.getElementById("embed-iframe");
 var embedlist = document.getElementById("embed-list");
 var root = document.getElementById("form");
-var songs = ["1","2","3"];
 
+let songs = [];
 
+console.log(songs)
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
     let element = document.getElementById('embed-iframe');
     let options = {
@@ -24,21 +25,20 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     IFrameAPI.createController(element, options, callback);
 };
 
-var Lista = React.createClass({
+var SongLista = React.createClass({
     render(){
-        console.log("sup")
         return (
-            <div className="song">
+        <div className="song">
             <ul>
-            <p>Pew</p>
+            <h3>{this.props.song.name}</h3>
                 <li>
                   <button data-spotify-id={this.props.song.uri}>
                    {this.props.song.name}
                   </button>
                 </li>
-              </ul>
-            </div>
-          )
+            </ul>
+        </div>
+        )
     }
 });
 
@@ -48,7 +48,7 @@ var Form = React.createClass({
     fetch(`https://api.spotify.com/v1/search?q=${event.target.songN.value}&type=track&limit=10&offset=5`, {
         method: "GET",
         headers: {
-            Authorization: "Bearer BQCLzc8hAHejvhdn_vpwMRvfCzBzIJXnmVOPzTBkvK_fLpB9a4bvz8JcQ1LJOCn6mgaTarZC_BMlUyj-ZxJhz8ywZnQoH26jiMJ_IpQ53FHOsi4EYkpU5OBuPUJnSUHEyXBZaJ_6-AC4LKhS908hLrTzs4lSm2PkWH5aCPpOXMyxIk6TZkscXSCTFGeB4IitKJzQ"
+            Authorization: "Bearer BQCSLrYJoH1tRpNW8n_kaXLFJFKhh_YDH48sBRf9lzPFzS-riX68_3Sqb-bBAKlNt0z9T0GuK_MTn45MoqloyjHV9_P4n_eGSocuD4FiZAKnP0Olij7i_ZVLKE9DvP19UnL13qeDstaSikgFw4tTSfZYilCAA23lUKxph-7i5wR37Jc9nnGkiSiwoKf2WkKYEzGV"
         }
     })
     .then(response => response.json())
@@ -61,7 +61,7 @@ var Form = React.createClass({
             <div className="songs">
                 {this.state.songs.map((song)=>{
                     console.log(song);
-                    <Lista 
+                    <SongLista
                     song={song}/>
                 },this)}
             </div>
@@ -78,6 +78,6 @@ var Form = React.createClass({
             </form>
         )
     }
-})
+});
 
 ReactDOM.render(<Form/>,root);
