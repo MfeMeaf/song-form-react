@@ -13,7 +13,7 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     let options = {
         width: '60%',
         height: '200',
-        uri: songs[0].uri
+        uri: "spotify:track:30SCXVFyQGOFMdKnbgJS18"
 };
     let callback = (EmbedController) => {
         document.querySelectorAll('ul > li > button').forEach(
@@ -29,16 +29,11 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
 var SongLista = React.createClass({
     render(){
         return (
-        <div className="song">
-            <h3>{this.props.song.name}</h3>
-            <ul>
-                <li>
-                  <button data-spotify-id={this.props.song.uri}>
-                   {this.props.song.name}
-                  </button>
-                </li>
-            </ul>
-        </div>
+            <li>
+                <button data-spotify-id="spotify:episode:7makk4oTQel546B0PZlDM5">
+                        {this.props.song.name}
+                </button>
+            </li>
         )
     }
 });
@@ -49,13 +44,13 @@ var Form = React.createClass({
     fetch(`https://api.spotify.com/v1/search?q=${event.target.songN.value}&type=track&limit=10&offset=5`, {
         method: "GET",
         headers: {
-            Authorization: `bearer BQBAnKPJzfSm_Roa3zkIdUUOxgzVnkpKgeHNht_kSv77_To33p7Et5GNIM2j878Zn94pZ2jrf7E_tK3StQxQ7cHXGnPviU5XitRU2FIKpn8R4kFecOEQc3m4sn_xMgYnPUFxiS0uSK8tbwvomLKmH2v4J8n6PVxmAJkC-MnGo8RmI7_oFLUU4QoOHUBP4hdZ4cQC` 
+            Authorization: `Bearer BQBAnKPJzfSm_Roa3zkIdUUOxgzVnkpKgeHNht_kSv77_To33p7Et5GNIM2j878Zn94pZ2jrf7E_tK3StQxQ7cHXGnPviU5XitRU2FIKpn8R4kFecOEQc3m4sn_xMgYnPUFxiS0uSK8tbwvomLKmH2v4J8n6PVxmAJkC-MnGo8RmI7_oFLUU4QoOHUBP4hdZ4cQC` 
         }
     })
     .then(response => response.json())
     .then(({tracks}) => {
+        console.log(tracks);
         songs = tracks.items; 
-        console.log(songs);
         this.setState({
             songs: songs
         });
@@ -81,4 +76,29 @@ var Form = React.createClass({
     }
 });
 
+// var NewComponent = React.createClass({
+//     render() {
+//       return (
+//         <ul id="episodes">
+//           <li>
+//             <button data-spotify-id="spotify:episode:7makk4oTQel546B0PZlDM5">
+//               My Path to Spotify: Women in Engineering
+//             </button>
+//           </li>
+//           <li>
+//             <button data-spotify-id="spotify:episode:43cbJh4ccRD7lzM2730YK3">
+//               What is Backstage?
+//             </button>
+//           </li>
+//           <li>
+//             <button data-spotify-id="spotify:episode:6I3ZzCxRhRkNqnQNo8AZPV">
+//               Introducing Nerd Out@Spotify
+//             </button>
+//           </li>
+//         </ul>
+//       );
+//     }
+//   });
+
 ReactDOM.render(<Form/>,root);
+// ReactDOM.render(<NewComponent/>, embedlist)
