@@ -1,0 +1,35 @@
+iframe{
+    float: right;
+}
+
+
+  h1 {
+    margin:  10px;
+  }
+
+  ol#song-list {
+    float: left;
+    margin:  0 10px;
+    padding: 0;
+    width: 35%;
+  }
+
+  ol#song-list > li {
+    list-style-type: none;
+  }
+
+  button {
+    border-radius:  7px;
+    border: 0;
+    background: #191414;
+    color: #fff;
+    padding:  10px;
+    margin:  0 0 3px 0;
+    width: 20%;
+    height: 10%;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #1Db954;
+  }

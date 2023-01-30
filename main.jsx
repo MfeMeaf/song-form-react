@@ -12,7 +12,7 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
         uri: "spotify:track:0WhSlHpA9T6S8pKyz7DRBx"
 };
     let callback = (EmbedController) => {
-        document.querySelectorAll('ul > li > button').forEach(
+        document.querySelectorAll('ol > li > button').forEach(
         song => {
             song.addEventListener('click', () => {
           EmbedController.loadUri(song.dataset.spotifyId)
@@ -22,21 +22,20 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     IFrameAPI.createController(element, options, callback);
 };
 
-let bearer = "BQAt7WPX1R66YyRA0-w4Nidl4pFCh3hCKpA5zMmPEN8r9oWit_W1Txi4g8HvK55K191lQzTc8B8qGxtHhnOSIFJK5kxQ_LWZRzeqqSU_pPDFLirKRkO4ek7xyZBdbLXRhggpaxstyK6vna5IxIDYvbpl1d-0SkJ_DtkQORd5OPhA1uhAA2R7nwHQ0mNyZGkqg0sh"
+let bearer = "BQAOmWMjlKP-7UIHs1dTV2ttguowqDZ2CTLqEQux5Pcj4r15W_csVLrKkpM4Wj6vI8Rmt9BEsIfyWGqCrWPL-vhdy8jLoMzTgZyiMN8qmAhQJhawzhACTENdY3iIVnUXbwGsu2lET1KaMfR8gTmBgpcSmP5cCJH-XY1wHqlUKUM55qQWb-HlGVY9v7Tc7SiuLU65"
 
 let songs = [];
 
-var SongLista = React.createClass({
-    render(){
-        return (
-            <li>
-                <button  data-spotify-id={this.props.song.uri}>
-                        {this.props.song.name}
-                </button>
-            </li>
-        )
-    }
-});
+var songLista= ()=>{
+    console.log("yes")
+    let i = 0;
+    document.querySelectorAll('ol > li > button').forEach(
+        song => {
+            song.setAttribute("data-spotify-id", songs[i].uri)
+            song.innerHTML = `${songs[i].name} - ${songs[i].artists[0].name}`
+            i = i +1;
+        });
+};
 
 
 var Form = React.createClass({
@@ -50,26 +49,18 @@ var Form = React.createClass({
     })
     .then(response => response.json())
     .then(({tracks}) => {
-        console.log(tracks);
         songs = tracks.items; 
         this.setState({
             songs: songs
         });
-            return(
-        <div>
-            {this.state.songs.map((song)=>{
-                console.log(song);
-                        ReactDOM.render(<SongLista
-                        song={song}/>,embedlist)
-            },this)}
-        </div>
-    )
+        console.log(this.state.songs)
+        songLista(this.state.songs);
     })
     },
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                <label for="songN">Song name:</label>
+                <label for="songN">Keywords: </label>
                 <input type="text" id="songN"/>
                 <input type="submit" value="Submit"/>
             </form>
