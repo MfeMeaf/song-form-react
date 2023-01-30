@@ -7,14 +7,14 @@ iframe{
     margin:  10px;
   }
 
-  ol#song-list {
+  ol.song-list {
     float: left;
     margin:  0 10px;
     padding: 0;
     width: 35%;
   }
 
-  ol#song-list > li {
+  ol.song-list > li {
     list-style-type: none;
   }
 
@@ -32,4 +32,7 @@ iframe{
 
   button:hover {
     background: #1Db954;
+  }
+  #song-list{
+    visibility: hidden;
   }

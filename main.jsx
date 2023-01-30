@@ -27,14 +27,14 @@ let bearer = "BQAOmWMjlKP-7UIHs1dTV2ttguowqDZ2CTLqEQux5Pcj4r15W_csVLrKkpM4Wj6vI8
 let songs = [];
 
 var songLista= ()=>{
-    console.log("yes")
     let i = 0;
     document.querySelectorAll('ol > li > button').forEach(
         song => {
             song.setAttribute("data-spotify-id", songs[i].uri)
             song.innerHTML = `${songs[i].name} - ${songs[i].artists[0].name}`
             i = i +1;
-        });
+    });
+    document.getElementById("song-list").style.visibility = "visible";
 };
 
 
